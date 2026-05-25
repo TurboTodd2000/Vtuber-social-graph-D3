@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<title>Vtuber social network</title>
+
+	<link rel="stylesheet" href="./style.css">
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+
+<body>
+
+	<div id="header">
+		<h1>Group affliation and relationships of indie vtubers and streamers</h1>
+
+		<h3>NOTE: this is not intended to be an objective map of relationships but only to serve as a "neighborhood map" of folks who know or collab with each other. No malice, ill will or foul intent is ment by this. The friends/collab view outside of the 1st order connections to Michi are extremely simplified to make more readable, use only as a guide. The guide in Discord has suggestions re: songs for review. The interests view is undergoing further work, expect folks to get further connections as I can add them. :-)</h3>
+
+		<p>
+			Instructions: click and drag to pan, mouse wheel to zoom in and out. Click on a node to get youtube/twitch links where possible. Buttons swap display per label.<br />Click on the persons name to go to their wiki entry, where possible YouTube and Twitch links are also provided.
+		</p>
+	</div>
+
+
+<!--  buttons to select view -->
+<div id="buttonRow" class="me">
+
+	<div class="button">
+		<input type="radio" name="edgesFilter" id="group" value="group" class="radioButton" checked="checked" />
+		<label for= "group" id="groupLabel">
+			Is/was a member of
+		</label>
+	</div>
+
+
+	<div class="button">
+
+		<input type="radio" name="edgesFilter" id="interests" value="interests" class="radioButton" />
+		<label for= "interests" id="interestsLabel">
+			Interests/stream content is
+		</label>
+	</div>
+
+
+	<div class="button">
+		<input type="radio" name="edgesFilter" id="collab" value="collab" class="radioButton" />
+		<label for= "collab" id="collabLabel">
+			Friends/collabed with
+		</label>
+	</div> 
+</div>
+
+
+
+<!-- svg for graph -->
+<svg id="mynetwork" ></svg> 
+
+<!-- bottom legend -->
+<div id="legendOverlay">
+
+	<div class="legendRows" >
+
+		<!-- container for talent info -->
+		<div id="urlContainer" class="talentContainer">
+
+			<a href="#" target="_blank" id="talentName">
+				<span class="talentButton name" >Name</span>
+			</a>
+
+			<a  href="#" id="youtubeLink" target="_blank">
+				<span class="talentButton" >YouTube</span>
+			</a>
+
+			<a  href="#" id="twitchLink" target="_blank">
+				<span class="talentButton" >Twitch</span>
+			</a>	
+
+		</div>
+
+	</div>
+
+	<div class="legendRows" >
+
+		<!-- legend for certain display modes -->
+		<div id="legend">
+
+
+			<div class="legendEntry">
+				<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+					<circle cx="10" cy="10" r="10" fill="orange" />
+					Sorry, your browser does not support inline SVG.
+				</svg>
+
+				<span>Indies</span>
+			</div>
+
+
+			<div class="legendEntry">
+				<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+					<circle cx="10" cy="10" r="10" fill="blue" />
+					Sorry, your browser does not support inline SVG.
+				</svg>
+
+				<span>dentsu.exe</span>
+			</div>
+
+
+			<div class="legendEntry">
+				<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+					<circle cx="10" cy="10" r="10" fill="purple" />
+					Sorry, your browser does not support inline SVG.
+				</svg>
+
+				<span>Beastiez</span>
+
+			</div>
+
+
+			<div class="legendEntry">
+				<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+					<circle cx="10" cy="10" r="10" fill="red" />
+					Sorry, your browser does not support inline SVG.
+				</svg>
+
+				<span>Nova</span>
+			</div>
+
+
+			<div class="legendEntry">
+				<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+					<circle cx="10" cy="10" r="10" fill="yellow" />
+					Sorry, your browser does not support inline SVG.
+				</svg>
+				<span>VichiBan</span>
+
+			</div>
+
+
+			<div class="legendEntry">
+				<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+					<circle cx="10" cy="10" r="10" fill="darkgreen" />
+					Sorry, your browser does not support inline SVG.
+				</svg>
+
+				<span>Neuroverse</span>
+			</div>
+
+
+			<div class="legendEntry">
+				<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+					<circle cx="10" cy="10" r="10" fill="firebrick" />
+					Sorry, your browser does not support inline SVG.
+				</svg>
+
+				<span>Fleshtubers</span>
+			</div>
+
+
+			<div class="legendEntry">
+				<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+					<circle cx="10" cy="10" r="10" fill="LightSeaGreen" />
+					Sorry, your browser does not support inline SVG.
+				</svg>
+
+				<span>Lab Brats</span>
+			</div>
+
+
+			<div class="legendEntry">
+				<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+					<circle cx="10" cy="10" r="10" fill="green" />
+					Sorry, your browser does not support inline SVG.
+				</svg>
+
+				<span>Hololive</span>
+			</div>
+
+
+						<div class="legendEntry">
+				<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+					<circle cx="10" cy="10" r="10" fill="SkyBlue" />
+					Sorry, your browser does not support inline SVG.
+				</svg>
+
+				<span>TERI-yaki</span>
+			</div>
+
+
+
+
+		</div>
+
+	</div>
+
+
+
+</div>
+
+
+<div>
+
+
+
+</div>
+
+
+
+
+<script>
+	//on click function to swap display attr. goes here
+
+	//chagpt revision, switching to "change" as the event listener
+	document.querySelectorAll('input[name="edgesFilter"]').forEach(radio => {
+
+		radio.addEventListener("change", function () {
+
+			const legend = document.getElementById("legend");
+
+			if (this.value === "group") {
+				legend.style.display = "none";
+			} else {
+				legend.style.display = "flex";
+			}
+
+		});
+
+	});
+</script>
+
+
+<script>
+	//this is to force a reset of the legend display state by forcing the input that has "checked" to be triggered and process by the previous script
+	document.addEventListener("DOMContentLoaded", function () {
+
+		document.querySelectorAll('input[type="radio"]').forEach(function (radio) {
+
+			if (radio.checked) {
+				radio.click();
+			}
+
+		});
+
+	});
+
+</script>
+
+
+<script src="./data/Data.js"></script>
+<script src="script_test.js"></script>
+
+
+</body>
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

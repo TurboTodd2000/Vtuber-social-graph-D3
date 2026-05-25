@@ -1,0 +1,211 @@
+
+
+
+    body {
+      font-family:
+      -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+      "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+
+
+    #header {
+      text-align: center;
+      padding: 10px 20px 0 20px;
+    }
+
+
+    #mynetwork {
+      width: 99vw;
+      height: 85vh;
+      border: 1px solid lightgray;
+    }
+
+
+
+
+    /*display buttons*/
+
+    div#buttonRow.me {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+
+    .button {
+      position: relative;
+      margin: 0 5px 0 0;
+      padding: 10px 15px;
+      border: 1px solid #CCC;
+      text-align: center;
+      width: 250px;
+      height: 20px;
+    }
+
+    .button label,
+    .button input {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding-top: 2px;
+    }
+
+    .button input[type="radio"] {
+      opacity: 0.011;
+      z-index: 100;
+    }
+
+    .button input[type="radio"]:checked + label {
+      background: #20b8be;
+      border-radius: 4px;
+    }
+
+    .button label {
+      cursor: pointer;
+      z-index: 90;
+      line-height: 2em;
+    }
+
+
+
+    /* bottom info */
+    #legendOverlay {
+      position: fixed;
+      bottom: 9px;
+      left: 9px;
+      right: 9px;
+
+      pointer-events: none;
+    }
+
+
+    .legendRows {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    #legend, 
+    #urlContainer {
+      background-color: rgba(150,150,150,.9);
+      display: flex;
+      padding:10px 15px;
+      align-items: stretch;
+      border-radius: 10px 10px 0px 0px;
+    }
+
+
+    #legend {display: none;}
+
+
+    /* talent continers */
+    #urlContainer {
+      pointer-events: auto;
+      margin-right: 10px;
+    }
+
+
+    #urlContainer a {
+      margin-right: 5px;
+    }
+
+    #urlContainer a:last-child {
+      margin-right: 0;
+    }
+
+#talentName,
+#youtubeLink,
+#twitchLink {
+  text-decoration: none;
+}
+
+
+    .talentButton {
+      padding: 0 15px;
+      height: 44px;
+      background: #20b8be;
+      color: black;
+      border-radius: 5px;
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .talentButton span {
+      display: inline-block;
+      align-content: center;
+    }
+
+
+    .talentContainer a:last-child {
+      margin-right: 0;
+    }
+
+
+    .name {
+      font-size: 20px;
+      font-weight: bold;
+      align-self: center;
+    }
+
+
+
+    /* legend containers */
+
+    .legendEntry {
+      align-self: center;
+      margin-right: 25px;
+      text-align: center;
+      display: flex;
+    }
+
+
+    .legendEntry svg {
+      margin-right: 10px;
+    }
+
+    .legendEntry:last-child {
+      margin-right: 0px;
+    }
+
+
+
+/* D3 specific layout */
+
+
+#mynetwork {
+  width: 100%;
+  height: 85vh;
+  border: 1px solid #444;
+  background: #333;
+}
+
+.node text {
+  pointer-events: none;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  
+}
+
+.link {
+  stroke-opacity: 0.5;
+}
+
+.node rect {
+  stroke: #000;
+  stroke-width: 1px;
+  rx: 6px;
+}
+
+.node circle {
+  stroke: #000;
+  stroke-width: 1px;
+}
+

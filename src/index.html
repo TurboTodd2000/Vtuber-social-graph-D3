@@ -1,0 +1,52 @@
+<h1>Group affliation and relationships of indie vtubers and streamers</h1>
+
+<h3>NOTE: this is not intended to be an objective map of relationships but only to serve as a "neighborhood map" of folks who know or collab with each other. No malice, ill will or foul intent is ment by this.</h3>
+
+<p>
+
+<div>
+
+  <label>
+    Filter display
+    <select id="nodeFilterSelect">
+      <option value="">None</option>
+      <option value="1">Groups</option>
+      <option value="2">Interests</option>
+      <option value="3">Has Collabed With</option>
+    </select>
+  </label>
+
+  <br />
+  <br />
+
+  <label>
+    Filter edges
+    <div>
+
+      <label>
+        <input type="checkbox" name="edgesFilter" value="group" checked="" />
+        Is/was a <span style="color: green">member</span> of
+      </label>
+    </div>
+
+    <div>
+
+      <label>
+        <input type="checkbox" name="edgesFilter" value="interests" checked="" />
+        Interests/stream <span style="color: blue">content</span> is
+      </label>
+    </div>
+
+    <div>
+      <label>
+        <input type="checkbox" name="edgesFilter" value="collab" checked="" />
+        Has <span style="color: red">collabed</span> with
+      </label>
+    </div>
+
+  </label>
+
+</div>
+
+<br />
+<div id="mynetwork"></div>
