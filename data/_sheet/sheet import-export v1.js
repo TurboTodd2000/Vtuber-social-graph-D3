@@ -129,7 +129,7 @@ for (let currentNode of interests) {
 
 			for (let currentEdge of edgeArray) {
 
-				var edgeHTMLoutput = fromText + currentIndex + toText + currentEdge + typeText + currentType + groupText + currentGroup + endText;
+				var edgeHTMLoutput = fromText + currentIndex + toText + currentEdge + typeText + currentType + groupText + currentGroup + dashesText + false + physicsEndText;
 
 				console.log(edgeHTMLoutput);
 
@@ -205,7 +205,7 @@ for (let currentNode of groupsFormal) {
 			for (let currentEdge of edgeArray) {
 
 				//this assembles the info from the sheet output with the string fragments in the variable section to create the final output
-				var edgeHTMLoutput = fromText + currentIndex + toText + currentEdge + typeText + currentType + endText;
+				var edgeHTMLoutput = fromText + currentIndex + toText + currentEdge + typeText + currentType + dashesText + false + physicsEndText;
 
 				//console.log(edgeHTMLoutput);
 
@@ -222,7 +222,7 @@ for (let currentNode of groupsFormal) {
 				//doing this because I can't figure out how to fix this index reference in the spreadsheet
 				const adjustsedSubgroup = Number(currentSubgroup) + 1000;
 
-				var edgeHTMLoutput = fromText + currentIndex + toText + adjustsedSubgroup + typeText + currentType + endText;
+				var edgeHTMLoutput = fromText + currentIndex + toText + adjustsedSubgroup + typeText + currentType + dashesText + false + physicsEndText;
 
 				//console.log(edgeHTMLoutput);
 
@@ -410,7 +410,7 @@ function nodeWrite(outputNodeAcc, outputEdgeAcc) {
 
 	try {
 
-		fs.writeFileSync('/Volumes/Data\ World\ 2/Documents/Vtuber-social-graph D3 refactor/data/Data.js', outputNodeEdge);
+		fs.writeFileSync('/Volumes/Data\ World\ 2/Documents/ GitHub/Vtuber-social-graph-D3/data/Data.js', outputNodeEdge);
 
 		console.log('Files written successfully.');
 

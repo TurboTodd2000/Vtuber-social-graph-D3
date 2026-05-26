@@ -14,9 +14,9 @@ const width = window.innerWidth;
 const height = window.innerHeight;
 
 const svg = d3.select("#mynetwork")
-	.attr("width", width)
-	.attr("height", height)
-	.attr("viewBox", [0, 0, width, height]);
+.attr("width", width)
+.attr("height", height)
+.attr("viewBox", [0, 0, width, height]);
 
 
 // ========================================
@@ -26,10 +26,10 @@ const svg = d3.select("#mynetwork")
 const container = svg.append("g");
 
 const linkLayer = container.append("g")
-	.attr("class", "link-layer");
+.attr("class", "link-layer");
 
 const nodeLayer = container.append("g")
-	.attr("class", "node-layer");
+.attr("class", "node-layer");
 
 
 // ========================================
@@ -38,11 +38,11 @@ const nodeLayer = container.append("g")
 
 svg.call(
 	d3.zoom()
-		.scaleExtent([0.1, 5])
-		.on("zoom", (event) => {
-			container.attr("transform", event.transform);
-		})
-);
+	.scaleExtent([0.1, 5])
+	.on("zoom", (event) => {
+		container.attr("transform", event.transform);
+	})
+	);
 
 
 // ========================================
@@ -67,7 +67,7 @@ svg.on("click", (event) => {
 
 const nodeById = new Map(
 	allNodes.map(n => [n.id, n])
-);
+	);
 
 
 // ========================================
@@ -84,203 +84,239 @@ let state = {
 // GROUP STYLE REGISTRY
 // ========================================
 
-const groupStyles = {
 
-	INTERESTS: {
-		fill: "grey",
-		label: "black",
-		edge: "grey",
+
+const style = {
+	VSHOJO: {
+		talent: {
+			node: { fill: "black" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "black" },
+			label: { fill: "white" }
+		}
 	},
 
 	DENTSU: {
-		fill: "blue",
-		label: "white",
-		edge: "blue",
+		talent: {
+			node: { fill: "blue" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "blue" },
+			label: { fill: "white" }
+		}
 	},
 
 	NOVA: {
-		fill: "red",
-		label: "white",
-		edge: "red",
+		talent: {
+			node: { fill: "red" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "red" },
+			label: { fill: "white" }
+		}
 	},
 
 	BEASTIEZ: {
-		fill: "purple",
-		label: "white",
-		edge: "purple",
+		talent: {
+			node: { fill: "purple" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "purple" },
+			label: { fill: "white" }
+		}
 	},
 
 	VICHIBAN: {
-		fill: "yellow",
-		label: "black",
-		edge: "yellow",
+		talent: {
+			node: { fill: "yellow" },
+			label: { fill: "black" }
+		},
+		group: {
+			node: { fill: "yellow" },
+			label: { fill: "white" }
+		}
 	},
 
 	INDIES: {
-		fill: "orange",
-		label: "black",
-		edge: "orange",
+		talent: {
+			node: { fill: "orange" },
+			label: { fill: "black" }
+		},
+		group: {
+			node: { fill: "orange" },
+			label: { fill: "white" }
+		}
 	},
 
 	NEUROVERSE: {
-		fill: "darkgreen",
-		label: "white",
-		edge: "darkgreen",
+		talent: {
+			node: { fill: "MediumSpringGreen" },
+			label: { fill: "black" }
+		},
+		group: {
+			node: { fill: "MediumSpringGreen" },
+			label: { fill: "white" }
+		}
 	},
 
 	INDO_GIRLYPOPS: {
-		fill: "DarkOrchid",
-		label: "white",
-		edge: "DarkOrchid",
+		talent: {
+			node: { fill: "DarkOrchid" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "DarkOrchid" },
+			label: { fill: "white" }
+		}
 	},
 
 	HOLOLIVE: {
-		fill: "green",
-		label: "white",
-		edge: "green",
+		talent: {
+			node: { fill: "green" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "green" },
+			label: { fill: "white" }
+		}
 	},
 
 	FLESHTUBERS: {
-		fill: "firebrick",
-		label: "white",
-		edge: "firebrick",
+		talent: {
+			node: { fill: "firebrick" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "firebrick" },
+			label: { fill: "white" }
+		}
 	},
 
 	LAB_BRATS: {
-		fill: "LightSeaGreen",
-		label: "white",
-		edge: "LightSeaGreen",
+		talent: {
+			node: { fill: "LightSeaGreen" },
+			label: { fill: "black" }
+		},
+		group: {
+			node: { fill: "LightSeaGreen" },
+			label: { fill: "white" }
+		}
 	},
 
-	VSHOJO: {
-		fill: "black",
-		label: "white",
-		edge: "black",
-	},
 
 	CRASHOUT_CREW: {
-		fill: "Turquoise",
-		label: "black",
-		edge: "Turquoise",
+		talent: {
+			node: { fill: "Turquoise" },
+			label: { fill: "black" }
+		},
+		group: {
+			node: { fill: "Turquoise" },
+			label: { fill: "white" }
+		}
 	},
+
 
 	TERI_YAKI: {
-		fill: "SkyBlue",
-		label: "black",
-		edge: "SkyBlue",
+		talent: {
+			node: { fill: "SkyBlue" },
+			label: { fill: "black" }
+		},
+		group: {
+			node: { fill: "SkyBlue" },
+			label: { fill: "white" }
+		}
 	},
 
+
 	VEIN_GANG: {
-		fill: "Moccasin",
-		label: "white",
-		edge: "Moccasin",
+		talent: {
+			node: { fill: "Moccasin" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "Moccasin" },
+			label: { fill: "white" }
+		}
+	},
+
+	SOCKS: {
+		talent: {
+			node: { fill: "pink" },
+			label: { fill: "black" }
+		},
+		group: {
+			node: { fill: "pink" },
+			label: { fill: "white" }
+		}
+	},
+
+	EN_GIRLYPOPS: {
+		talent: {
+			node: { fill: "MediumBlue" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "MediumBlue" },
+			label: { fill: "white" }
+		}
+	},
+
+//non talent/group nodes
+
+	INTERESTS: {
+		talent: {
+			node: { fill: "grey" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "grey" },
+			label: { fill: "white" }
+		}
 	},
 
 };
+
 
 
 // ========================================
 // STYLE HELPERS
 // ========================================
 
+
+
 function getNodeFill(d) {
-
-	return groupStyles[d.group]?.fill || "#777";
-
+	return (
+		style[d.group]?.[d.type]?.node?.fill ||
+		"#777"
+		);
 }
 
-
-function getLabelColor(d) {
-
-	return groupStyles[d.group]?.label || "black";
-
+function getLabelFill(d) {
+	return (
+		style[d.group]?.[d.type]?.label?.fill ||
+		"white"
+		);
 }
-
 
 function getEdgeColor(d) {
 
-	return groupStyles[d.group]?.edge || "#999";
+	const source =
+	typeof d.source === "object"
+	? d.source
+	: nodeById.get(d.source);
+
+	return (
+		style[source?.group]?.[source?.type]?.node?.fill ||
+		"#999"
+		);
 
 }
 
-
-// ========================================
-// FORCE SIMULATION
-// ========================================
-
-const simulation = d3.forceSimulation(allNodes)
-
-	.force(
-		"link",
-		d3.forceLink(allEdges)
-			.id(d => d.id)
-			.distance(220)
-	)
-
-	.force(
-		"charge",
-		d3.forceManyBody().strength(-900)
-	)
-
-	.force(
-		"center",
-		d3.forceCenter(width / 2, height / 2)
-	)
-
-	.force(
-		"collision",
-		d3.forceCollide().radius(d => {
-
-			if (d.type === "talent") return 70;
-			if (d.type === "group") return 80;
-			if (d.type === "interests") return 60;
-
-			return 50;
-
-		})
-	)
-
-	.force(
-	"link",
-	d3.forceLink(allEdges)
-		.id(d => d.id)
-		.distance(220)
-		.strength(0.15)
-)
-
-	.force(
-		"talentX",
-		d3.forceX(d => {
-
-			if (d.type === "talent") {
-				return width * 0.5;
-			}
-
-			return width * 0.5;
-
-		}).strength(0.03)
-	)
-
-	.force(
-		"layerY",
-		d3.forceY(d => {
-
-			if (d.type === "group") {
-				return height * 0.2;
-			}
-
-			if (d.type === "talent") {
-				return height * 0.5;
-			}
-
-			if (d.type === "interests") {
-				return height * 0.8;
-			}
-
-			return height * 0.5;
-
-		}).strength(0.08)
-	);
 
 
 
@@ -321,14 +357,14 @@ function getVisibleEdges(visibleNodeIds) {
 	return allEdges.filter(edge => {
 
 		const sourceId =
-			typeof edge.source === "object"
-				? edge.source.id
-				: edge.source;
+		typeof edge.source === "object"
+		? edge.source.id
+		: edge.source;
 
 		const targetId =
-			typeof edge.target === "object"
-				? edge.target.id
-				: edge.target;
+		typeof edge.target === "object"
+		? edge.target.id
+		: edge.target;
 
 		if (edge.type !== state.mode) {
 			return false;
@@ -337,11 +373,86 @@ function getVisibleEdges(visibleNodeIds) {
 		return (
 			visibleNodeIds.has(sourceId) &&
 			visibleNodeIds.has(targetId)
-		);
+			);
 
 	});
 
 }
+
+
+
+
+
+//filtering goes here
+
+// ========================================
+// DEGREE (FOR ATLAS-LIKE LAYOUT)
+// ========================================
+
+const degree = new Map();
+allNodes.forEach(n => degree.set(n.id, 0));
+
+allEdges.forEach(e => {
+
+	const s = typeof e.source === "object" ? e.source.id : e.source;
+	const t = typeof e.target === "object" ? e.target.id : e.target;
+
+	degree.set(s, (degree.get(s) || 0) + 1);
+	degree.set(t, (degree.get(t) || 0) + 1);
+
+});
+
+// ========================================
+// FORCE SIMULATION
+// ========================================
+
+const simulation = d3.forceSimulation(allNodes)
+
+.force(
+	"link",
+	d3.forceLink(allEdges)
+	.id(d => d.id)
+	.distance(d => {
+		const s = d.source.id || d.source;
+		const t = d.target.id || d.target;
+		return 90 + (degree.get(s) + degree.get(t)) * 6;
+	})
+	.strength(0.275)
+	)
+
+.force(
+	"charge",
+	d3.forceManyBody().strength(d => {
+		return -100 * Math.sqrt(degree.get(d.id) || 1);
+	})
+	)
+
+.force(
+	"center",
+	d3.forceCenter(width / 1, height / 1)
+	)
+
+.force(
+	"collision",
+	d3.forceCollide().radius(d => {
+		if (d.type === "talent") return 60;
+		if (d.type === "group") return 70;
+		return 50;
+	})
+	)
+
+.alphaDecay(0.03)
+.velocityDecay(0.45);
+
+
+
+	//main update goes here
+
+
+
+
+
+
 
 
 // ========================================
@@ -361,14 +472,14 @@ function getNeighborhood(nodeId) {
 	filteredEdges.forEach(edge => {
 
 		const sourceId =
-			typeof edge.source === "object"
-				? edge.source.id
-				: edge.source;
+		typeof edge.source === "object"
+		? edge.source.id
+		: edge.source;
 
 		const targetId =
-			typeof edge.target === "object"
-				? edge.target.id
-				: edge.target;
+		typeof edge.target === "object"
+		? edge.target.id
+		: edge.target;
 
 		if (sourceId === nodeId) neighbors.add(targetId);
 		if (targetId === nodeId) neighbors.add(sourceId);
@@ -389,7 +500,7 @@ function updateGraph() {
 
 	const visibleNodeIds = new Set(
 		visibleNodes.map(n => n.id)
-	);
+		);
 
 	const visibleEdges = getVisibleEdges(visibleNodeIds);
 
@@ -406,24 +517,24 @@ function updateGraph() {
 	// ========================================
 
 	const link = linkLayer
-		.selectAll(".link")
-		.data(
-			visibleEdges,
-			d => {
+	.selectAll(".link")
+	.data(
+		visibleEdges,
+		d => {
 
-				const sourceId =
-					typeof d.source === "object"
-						? d.source.id
-						: d.source;
+			const sourceId =
+			typeof d.source === "object"
+			? d.source.id
+			: d.source;
 
-				const targetId =
-					typeof d.target === "object"
-						? d.target.id
-						: d.target;
+			const targetId =
+			typeof d.target === "object"
+			? d.target.id
+			: d.target;
 
-				return `${sourceId}-${targetId}-${d.type}`;
+			return `${sourceId}-${targetId}-${d.type}`;
 
-			}
+		}
 		);
 
 
@@ -431,39 +542,43 @@ function updateGraph() {
 
 
 	const linkEnter = link.enter()
-		.append("line")
-		.attr("class", "link")
-		.attr("stroke-width", 1.5)
-		.attr("stroke-linecap", "round");
+	.append("line")
+	.attr("class", "link")
+	.attr("stroke-width", 1.5)
+	.attr("stroke-linecap", "round")
+	.attr("stroke-dasharray", d =>
+		d.dashes ? "6,4" : null
+	);
+
 
 
 	const linkMerge = linkEnter.merge(link);
 
 
 	linkMerge
-		.attr("stroke", d => getEdgeColor(d))
-		.style("opacity", d => {
+	.attr("stroke", d => getEdgeColor(d))
+	.style("opacity", d => {
 
-			if (!neighborhood) return 0.35;
+		if (!neighborhood) return 0.35;
 
-			const sourceId =
-				typeof d.source === "object"
-					? d.source.id
-					: d.source;
+		const sourceId =
+		typeof d.source === "object"
+		? d.source.id
+		: d.source;
 
-			const targetId =
-				typeof d.target === "object"
-					? d.target.id
-					: d.target;
+		const targetId =
+		typeof d.target === "object"
+		? d.target.id
+		: d.target;
 
-			return (
-				neighborhood.has(sourceId) &&
-				neighborhood.has(targetId)
+		return (
+			neighborhood.has(sourceId) &&
+			neighborhood.has(targetId)
 			)
-				? 1
-				: 0.05;
+		? 1
+		: 0.05;
 
-		});
+	});
 
 
 	// ========================================
@@ -471,10 +586,10 @@ function updateGraph() {
 	// ========================================
 
 	const node = nodeLayer
-		.selectAll(".node")
-		.data(
-			visibleNodes,
-			d => d.id
+	.selectAll(".node")
+	.data(
+		visibleNodes,
+		d => d.id
 		);
 
 
@@ -482,9 +597,9 @@ function updateGraph() {
 
 
 	const nodeEnter = node.enter()
-		.append("g")
-		.attr("class", "node")
-		.call(drag(simulation));
+	.append("g")
+	.attr("class", "node")
+	.call(drag(simulation));
 
 
 	// ========================================
@@ -492,10 +607,10 @@ function updateGraph() {
 	// ========================================
 
 	nodeEnter
-		.filter(d => d.type === "interests")
-		.append("circle")
-		.attr("r", 30)
-		.attr("fill", d => getNodeFill(d));
+	.filter(d => d.type === "interests")
+	.append("circle")
+	.attr("r", 30)
+	.attr("fill", d => getNodeFill(d));
 
 
 	// ========================================
@@ -503,10 +618,11 @@ function updateGraph() {
 	// ========================================
 
 	nodeEnter
-		.filter(d => d.type === "group")
-		.append("circle")
-		.attr("r", 35)
-		.attr("fill", d => getNodeFill(d));
+	.filter(d => d.type === "group")
+	.append("circle")
+	.attr("r", 35)
+	.attr("fill", d => getNodeFill(d));
+	//.attr("fill", d => getFill(d))
 
 
 	// ========================================
@@ -514,18 +630,21 @@ function updateGraph() {
 	// ========================================
 
 	const talentNodes = nodeEnter
-		.filter(d => d.type === "talent");
+	.filter(d => d.type === "talent");
 
 
 	talentNodes.append("text")
-		.attr("class", "talent-label")
-		.attr("text-anchor", "middle")
-		.attr("dominant-baseline", "middle")
-		.attr("fill", d => getLabelColor(d))
-		.style("font-size", "14px")
-		.style("font-family", "Arial")
-		.style("font-weight", "bold")
-		.text(d => d.label || d.id);
+	.attr("class", "talent-label")
+	.attr("text-anchor", "middle")
+	.attr("dominant-baseline", "middle")
+	
+	.attr("fill", d => getLabelFill(d))
+	//.attr("fill", d => getFill(d))
+
+	.style("font-size", "14px")
+	.style("font-family", "Arial")
+	.style("font-weight", "bold")
+	.text(d => d.label || d.id);
 
 
 	talentNodes.each(function(d) {
@@ -534,21 +653,25 @@ function updateGraph() {
 
 		const text = group.select("text");
 
-		const bbox = text.node().getBBox();
+		const textNode = text.node();
+
+		if (!textNode) return;
+
+		const bbox = textNode.getBBox();
 
 		const paddingX = 14;
 		const paddingY = 8;
 
 		group.insert("rect", "text")
-			.attr("x", bbox.x - paddingX)
-			.attr("y", bbox.y - paddingY)
-			.attr("width", Math.max(
-				80,
-				bbox.width + (paddingX * 2)
+		.attr("x", bbox.x - paddingX)
+		.attr("y", bbox.y - paddingY)
+		.attr("width", Math.max(
+			80,
+			bbox.width + (paddingX * 2)
 			))
-			.attr("height", bbox.height + (paddingY * 2))
-			.attr("rx", 10)
-			.attr("fill", d => getNodeFill(d));
+		.attr("height", bbox.height + (paddingY * 2))
+		.attr("rx", 10)
+		.attr("fill", d => getNodeFill(d));
 
 	});
 
@@ -558,9 +681,9 @@ function updateGraph() {
 	// ========================================
 
 	nodeEnter
-		.filter(d => d.type !== "talent")
-		.append("text")
-		.attr("text-anchor", "middle")
+	.filter(d => d.type !== "talent")
+	.append("text")
+	.attr("text-anchor", "middle")
 
 
 
@@ -573,18 +696,21 @@ function updateGraph() {
 
 	})
 
-		
-		.attr("fill", d => getLabelColor(d))
-		.style("font-size", d => {
 
-			if (d.type === "group") return "20px";
-			if (d.type === "interests") return "18px";
+	.attr("fill", d => getLabelFill(d))
+	//.style("fill", d => getLabelFill(d))
 
-			return "14px";
 
-		})
-		.style("pointer-events", "none")
-		.text(d => d.label || d.id);
+	.style("font-size", d => {
+
+		if (d.type === "group") return "20px";
+		if (d.type === "interests") return "18px";
+
+		return "14px";
+
+	})
+	.style("pointer-events", "none")
+	.text(d => d.label || d.id);
 
 
 	const nodeMerge = nodeEnter.merge(node);
@@ -632,33 +758,33 @@ function updateGraph() {
 		// ========================================
 
 		const talentName =
-			document.getElementById("talentName");
+		document.getElementById("talentName");
 
 		const youtubeLink =
-			document.getElementById("youtubeLink");
+		document.getElementById("youtubeLink");
 
 		const twitchLink =
-			document.getElementById("twitchLink");
+		document.getElementById("twitchLink");
 
 
 		talentName.href = d.wiki || "#";
 
 		talentName.innerHTML =
-			`<span class="talentButton name">${d.label || "Unknown"}</span>`;
+	`<span class="talentButton name">${d.label || "Unknown"}</span>`;
 
 
-		youtubeLink.href = d.youtube || "#";
+	youtubeLink.href = d.youtube || "#";
 
-		youtubeLink.innerHTML =
-			`<span class="talentButton">${d.youtube ? "YouTube" : "No YouTube"}</span>`;
+	youtubeLink.innerHTML =
+`<span class="talentButton">${d.youtube ? "YouTube" : "No YouTube"}</span>`;
 
 
-		twitchLink.href = d.twitch || "#";
+twitchLink.href = d.twitch || "#";
 
-		twitchLink.innerHTML =
-			`<span class="talentButton">${d.twitch ? "Twitch" : "No Twitch"}</span>`;
+twitchLink.innerHTML =
+`<span class="talentButton">${d.twitch ? "Twitch" : "No Twitch"}</span>`;
 
-	});
+});
 
 
 	// ========================================
@@ -668,7 +794,7 @@ function updateGraph() {
 	simulation.nodes(visibleNodes);
 
 	simulation.force("link")
-		.links(visibleEdges);
+	.links(visibleEdges);
 
 	simulation.alpha(0.7).restart();
 
@@ -680,16 +806,16 @@ function updateGraph() {
 	simulation.on("tick", () => {
 
 		linkMerge
-			.attr("x1", d => d.source.x)
-			.attr("y1", d => d.source.y)
-			.attr("x2", d => d.target.x)
-			.attr("y2", d => d.target.y);
+		.attr("x1", d => d.source.x)
+		.attr("y1", d => d.source.y)
+		.attr("x2", d => d.target.x)
+		.attr("y2", d => d.target.y);
 
 
 		nodeMerge.attr(
 			"transform",
 			d => `translate(${d.x},${d.y})`
-		);
+			);
 
 	});
 
@@ -735,9 +861,9 @@ function drag(simulation) {
 
 
 	return d3.drag()
-		.on("start", dragstarted)
-		.on("drag", dragged)
-		.on("end", dragended);
+	.on("start", dragstarted)
+	.on("drag", dragged)
+	.on("end", dragended);
 
 }
 
@@ -747,31 +873,31 @@ function drag(simulation) {
 // ========================================
 
 document
-	.querySelectorAll('input[name="edgesFilter"]')
-	.forEach(radio => {
+.querySelectorAll('input[name="edgesFilter"]')
+.forEach(radio => {
 
-		radio.addEventListener("change", e => {
+	radio.addEventListener("change", e => {
 
-			state.mode = e.target.value;
+		state.mode = e.target.value;
 
-			const legend =
-				document.getElementById("legend");
+		const legend =
+		document.getElementById("legend");
 
-			if (state.mode === "group") {
+		if (state.mode === "group") {
 
-				legend.style.display = "none";
+			legend.style.display = "none";
 
-			} else {
+		} else {
 
-				legend.style.display = "flex";
+			legend.style.display = "flex";
 
-			}
+		}
 
-			updateGraph();
-
-		});
+		updateGraph();
 
 	});
+
+});
 
 
 // ========================================

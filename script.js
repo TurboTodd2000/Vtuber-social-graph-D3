@@ -19,10 +19,12 @@ const svg = d3.select("#mynetwork")
 .attr("viewBox", [0, 0, width, height]);
 
 
-// zoom container
+// ========================================
+// ROOT CONTAINERS
+// ========================================
+
 const container = svg.append("g");
 
-// permanent render layers
 const linkLayer = container.append("g")
 .attr("class", "link-layer");
 
@@ -42,18 +44,22 @@ svg.call(
 	})
 	);
 
+
+// ========================================
+// CLEAR FOCUS ON BACKGROUND CLICK
+// ========================================
+
 svg.on("click", (event) => {
 
-	// only clear if background clicked
 	if (event.target.tagName === "svg") {
 
 		state.focusNode = null;
-
 		updateGraph();
 
 	}
 
 });
+
 
 // ========================================
 // NODE LOOKUP
@@ -68,10 +74,6 @@ const nodeById = new Map(
 // APP STATE
 // ========================================
 
-/*let state = {
-	mode: "group",
-};*/
-
 let state = {
 	mode: "group",
 	focusNode: null,
@@ -79,117 +81,138 @@ let state = {
 
 
 // ========================================
-// GROUP COLORS
+// GROUP STYLE REGISTRY
 // ========================================
 
-const groupColors = {
+const groupStyles = {
 
-	INTERESTS: "grey",
+	INTERESTS: {
+		fill: "grey",
+		label: "black",
+		edge: "grey",
+	},
 
-	DENTSU: "blue",
-	NOVA: "red",
-	BEASTIEZ: "purple",
-	VICHIBAN: "yellow",
-	INDIES: "orange",
-	NEUROVERSE: "darkgreen",
-	INDO_GIRLYPOPS: "DarkOrchid",
-	HOLOLIVE: "green",
-	FLESHTUBERS: "firebrick",
-	LAB_BRATS: "LightSeaGreen",
-	VSHOJO: "black",
-	CRASHOUT_CREW: "Turquoise",
-	TERI_YAKI: "SkyBlue",
-	VEIN_GANG: "Moccasin",
+	DENTSU: {
+		fill: "blue",
+		label: "white",
+		edge: "blue",
+	},
+
+	NOVA: {
+		fill: "red",
+		label: "white",
+		edge: "red",
+	},
+
+	BEASTIEZ: {
+		fill: "purple",
+		label: "white",
+		edge: "purple",
+	},
+
+	VICHIBAN: {
+		fill: "yellow",
+		label: "black",
+		edge: "yellow",
+	},
+
+	INDIES: {
+		fill: "orange",
+		label: "black",
+		edge: "orange",
+	},
+
+	NEUROVERSE: {
+		fill: "MediumSpringGreen",
+		label: "white",
+		edge: "darkgreen",
+	},
+
+	INDO_GIRLYPOPS: {
+		fill: "DarkOrchid",
+		label: "white",
+		edge: "DarkOrchid",
+	},
+
+	HOLOLIVE: {
+		fill: "green",
+		label: "white",
+		edge: "green",
+	},
+
+	FLESHTUBERS: {
+		fill: "firebrick",
+		label: "white",
+		edge: "firebrick",
+	},
+
+	LAB_BRATS: {
+		fill: "LightSeaGreen",
+		label: "white",
+		edge: "LightSeaGreen",
+	},
+
+	VSHOJO: {
+		fill: "black",
+		label: "white",
+		edge: "black",
+	},
+
+	CRASHOUT_CREW: {
+		fill: "Turquoise",
+		label: "black",
+		edge: "Turquoise",
+	},
+
+	TERI_YAKI: {
+		fill: "SkyBlue",
+		label: "black",
+		edge: "SkyBlue",
+	},
+
+	VEIN_GANG: {
+		fill: "Moccasin",
+		label: "white",
+		edge: "Moccasin",
+	},
+
+	SOCKS: {
+		fill: "pink",
+		label: "black",
+	},
+
+	EN_GIRLYPOPS: {
+		fill: "MediumBlue",
+		label: "",
+	},
 
 };
 
-const groupLabelColors = {
-
-	DENTSU: "white",
-	NOVA: "white",
-	BEASTIEZ: "white",
-	VSHOJO: "white",
-
-	VICHIBAN: "black",
-	INDIES: "black",
-	TERI_YAKI: "black",
-
-	INTERESTS: "black",
-
-};
-
 
 // ========================================
-// FORCE SIMULATION
+// STYLE HELPERS
 // ========================================
 
-const simulation = d3.forceSimulation(allNodes)
+function getNodeFill(d) {
 
-.force(
-	"link",
-	d3.forceLink(allEdges)
-	.id(d => d.id)
-	.distance(140)
-	)
+	return groupStyles[d.group]?.fill || "#777";
 
-.force(
-	"charge",
-	d3.forceManyBody().strength(-350)
-	)
+}
 
-.force(
-	"center",
-	d3.forceCenter(width / 2, height / 2)
-	)
 
-.force(
-	"collision",
-	d3.forceCollide().radius(d => {
+function getLabelColor(d) {
 
-		if (d.type === "talent") return 35;
-		if (d.type === "group") return 45;
-		if (d.type === "interests") return 40;
+	return groupStyles[d.group]?.label || "black";
 
-		return 30;
+}
 
-	})
-	)
 
-	// talents tend toward center
-.force(
-	"talentX",
-	d3.forceX(d => {
+function getEdgeColor(d) {
 
-		if (d.type === "talent") {
-			return width * 0.5;
-		}
+	return groupStyles[d.group]?.edge || "#999";
 
-		return width * 0.5;
+}
 
-	}).strength(0.03)
-	)
-
-	// layer arrangement
-.force(
-	"layerY",
-	d3.forceY(d => {
-
-		if (d.type === "group") {
-			return height * 0.2;
-		}
-
-		if (d.type === "talent") {
-			return height * 0.5;
-		}
-
-		if (d.type === "interests") {
-			return height * 0.8;
-		}
-
-		return height * 0.5;
-
-	}).strength(0.08)
-	);
 
 
 // ========================================
@@ -200,12 +223,10 @@ function getVisibleNodes() {
 
 	return allNodes.filter(node => {
 
-		// talents ALWAYS visible
 		if (node.type === "talent") {
 			return true;
 		}
 
-		// overlay nodes depend on mode
 		if (state.mode === "group") {
 			return node.type === "group";
 		}
@@ -214,7 +235,6 @@ function getVisibleNodes() {
 			return node.type === "interests";
 		}
 
-		// collab mode shows only talents
 		if (state.mode === "collab") {
 			return false;
 		}
@@ -240,12 +260,10 @@ function getVisibleEdges(visibleNodeIds) {
 		? edge.target.id
 		: edge.target;
 
-		// only show edges matching current mode
 		if (edge.type !== state.mode) {
 			return false;
 		}
 
-		// ensure both nodes visible
 		return (
 			visibleNodeIds.has(sourceId) &&
 			visibleNodeIds.has(targetId)
@@ -258,11 +276,94 @@ function getVisibleEdges(visibleNodeIds) {
 
 
 
+
+//filtering goes here
+
+// ========================================
+// DEGREE (FOR ATLAS-LIKE LAYOUT)
+// ========================================
+
+const degree = new Map();
+allNodes.forEach(n => degree.set(n.id, 0));
+
+allEdges.forEach(e => {
+
+	const s = typeof e.source === "object" ? e.source.id : e.source;
+	const t = typeof e.target === "object" ? e.target.id : e.target;
+
+	degree.set(s, (degree.get(s) || 0) + 1);
+	degree.set(t, (degree.get(t) || 0) + 1);
+
+});
+
+// ========================================
+// FORCE SIMULATION
+// ========================================
+
+const simulation = d3.forceSimulation(allNodes)
+
+.force(
+	"link",
+	d3.forceLink(allEdges)
+	.id(d => d.id)
+	.distance(d => {
+		const s = d.source.id || d.source;
+		const t = d.target.id || d.target;
+		return 90 + (degree.get(s) + degree.get(t)) * 6;
+	})
+	.strength(0.15)
+	)
+
+.force(
+	"charge",
+	d3.forceManyBody().strength(d => {
+		return -100 * Math.sqrt(degree.get(d.id) || 1);
+	})
+	)
+
+.force(
+	"center",
+	d3.forceCenter(width / 1, height / 1)
+	)
+
+.force(
+	"collision",
+	d3.forceCollide().radius(d => {
+		if (d.type === "talent") return 60;
+		if (d.type === "group") return 70;
+		return 50;
+	})
+	)
+
+.alphaDecay(0.03)
+.velocityDecay(0.45);
+
+
+
+	//main update goes here
+
+
+
+
+
+
+
+
+// ========================================
+// NEIGHBORHOOD
+// ========================================
+
 function getNeighborhood(nodeId) {
 
 	const neighbors = new Set([nodeId]);
 
-	allEdges.forEach(edge => {
+	const filteredEdges = allEdges.filter(edge => {
+
+		return edge.type === state.mode;
+
+	});
+
+	filteredEdges.forEach(edge => {
 
 		const sourceId =
 		typeof edge.source === "object"
@@ -274,25 +375,13 @@ function getNeighborhood(nodeId) {
 		? edge.target.id
 		: edge.target;
 
-		if (sourceId === nodeId) {
-			neighbors.add(targetId);
-		}
-
-		if (targetId === nodeId) {
-			neighbors.add(sourceId);
-		}
+		if (sourceId === nodeId) neighbors.add(targetId);
+		if (targetId === nodeId) neighbors.add(sourceId);
 
 	});
 
 	return neighbors;
-
 }
-
-
-
-
-
-
 
 
 // ========================================
@@ -310,18 +399,11 @@ function updateGraph() {
 	const visibleEdges = getVisibleEdges(visibleNodeIds);
 
 
-
 	let neighborhood = null;
 
 	if (state.focusNode !== null) {
 		neighborhood = getNeighborhood(state.focusNode);
 	}
-
-
-
-/*	console.log("mode:", state.mode);
-	console.log("visible nodes:", visibleNodes.length);
-	console.log("visible edges:", visibleEdges.length);*/
 
 
 	// ========================================
@@ -345,26 +427,29 @@ function updateGraph() {
 			: d.target;
 
 			return `${sourceId}-${targetId}-${d.type}`;
+
 		}
 		);
 
+
 	link.exit().remove();
+
 
 	const linkEnter = link.enter()
 	.append("line")
 	.attr("class", "link")
 	.attr("stroke-width", 1.5)
-	.attr("stroke-opacity", 0.5);
+	.attr("stroke-linecap", "round");
+
 
 	const linkMerge = linkEnter.merge(link);
 
+
 	linkMerge
-	.attr("stroke", d => {
-		return groupColors[d.group] || "#999";
-	})
+	.attr("stroke", d => getEdgeColor(d))
 	.style("opacity", d => {
 
-		if (!neighborhood) return 0.5;
+		if (!neighborhood) return 0.35;
 
 		const sourceId =
 		typeof d.source === "object"
@@ -397,7 +482,9 @@ function updateGraph() {
 		d => d.id
 		);
 
+
 	node.exit().remove();
+
 
 	const nodeEnter = node.enter()
 	.append("g")
@@ -406,59 +493,46 @@ function updateGraph() {
 
 
 	// ========================================
-	// NODE SHAPES
+	// INTEREST NODES
 	// ========================================
 
-	// interests
 	nodeEnter
 	.filter(d => d.type === "interests")
 	.append("circle")
 	.attr("r", 30)
-	.attr("fill", d => groupColors[d.group] || "grey");
+	.attr("fill", d => getNodeFill(d));
 
 
-	// groups
+	// ========================================
+	// GROUP NODES
+	// ========================================
+
 	nodeEnter
 	.filter(d => d.type === "group")
 	.append("circle")
 	.attr("r", 35)
-	.attr("fill", d => groupColors[d.group] || "#666");
+	.attr("fill", d => getNodeFill(d));
 
 
 	// ========================================
-// TALENT NODES (AUTO SIZE)
-// ========================================
+	// TALENT NODES
+	// ========================================
 
 	const talentNodes = nodeEnter
 	.filter(d => d.type === "talent");
 
 
-// add text FIRST
 	talentNodes.append("text")
 	.attr("class", "talent-label")
 	.attr("text-anchor", "middle")
 	.attr("dominant-baseline", "middle")
-	.attr("fill", d => {
-
-		if (
-			d.group === "VSHOJO" ||
-			d.group === "DENTSU" ||
-			d.group === "NOVA" ||
-			d.group === "BEASTIEZ"
-			) {
-			return "white";
-	}
-
-	return "black";
-
-})
+	.attr("fill", d => getLabelColor(d))
 	.style("font-size", "14px")
 	.style("font-family", "Arial")
 	.style("font-weight", "bold")
 	.text(d => d.label || d.id);
 
 
-// measure text + insert rect behind it
 	talentNodes.each(function(d) {
 
 		const group = d3.select(this);
@@ -473,36 +547,39 @@ function updateGraph() {
 		group.insert("rect", "text")
 		.attr("x", bbox.x - paddingX)
 		.attr("y", bbox.y - paddingY)
-		.attr("width", bbox.width + (paddingX * 2))
+		.attr("width", Math.max(
+			80,
+			bbox.width + (paddingX * 2)
+			))
 		.attr("height", bbox.height + (paddingY * 2))
 		.attr("rx", 10)
-		.attr("fill", groupColors[d.group] || "#444");
+		.attr("fill", d => getNodeFill(d));
 
 	});
 
+
 	// ========================================
-	// LABELS
+	// NON TALENT LABELS
 	// ========================================
 
 	nodeEnter
 	.filter(d => d.type !== "talent")
 	.append("text")
 	.attr("text-anchor", "middle")
-	.attr("dy", 5)
-	.attr("fill", d => {
 
-		if (
-			d.group === "VSHOJO" ||
-			d.group === "DENTSU" ||
-			d.group === "NOVA" ||
-			d.group === "BEASTIEZ"
-			) {
-			return "green";
-	}
 
-	return "black";
 
-})
+	.attr("y", d => {
+
+		if (d.type === "group") return 55;
+		if (d.type === "interests") return 50;
+
+		return 0;
+
+	})
+
+	
+	.attr("fill", d => getLabelColor(d))
 	.style("font-size", d => {
 
 		if (d.type === "group") return "20px";
@@ -518,7 +595,9 @@ function updateGraph() {
 	const nodeMerge = nodeEnter.merge(node);
 
 
-
+	// ========================================
+	// NEIGHBORHOOD FOCUS
+	// ========================================
 
 	nodeMerge.style("opacity", d => {
 
@@ -527,7 +606,6 @@ function updateGraph() {
 		return neighborhood.has(d.id) ? 1 : 0.1;
 
 	});
-
 
 
 	// ========================================
@@ -540,7 +618,7 @@ function updateGraph() {
 
 		event.stopPropagation();
 
-	// toggle focus
+
 		if (state.focusNode === d.id) {
 
 			state.focusNode = null;
@@ -554,9 +632,9 @@ function updateGraph() {
 		updateGraph();
 
 
-	// ========================================
-	// INFO PANEL
-	// ========================================
+		// ========================================
+		// INFO PANEL
+		// ========================================
 
 		const talentName =
 		document.getElementById("talentName");
@@ -589,7 +667,7 @@ twitchLink.innerHTML =
 
 
 	// ========================================
-	// UPDATE SIMULATION
+	// SIMULATION UPDATE
 	// ========================================
 
 	simulation.nodes(visibleNodes);
@@ -611,6 +689,7 @@ twitchLink.innerHTML =
 		.attr("y1", d => d.source.y)
 		.attr("x2", d => d.target.x)
 		.attr("y2", d => d.target.y);
+
 
 		nodeMerge.attr(
 			"transform",
@@ -639,12 +718,14 @@ function drag(simulation) {
 
 	}
 
+
 	function dragged(event, d) {
 
 		d.fx = event.x;
 		d.fy = event.y;
 
 	}
+
 
 	function dragended(event, d) {
 
@@ -656,6 +737,7 @@ function drag(simulation) {
 		d.fy = null;
 
 	}
+
 
 	return d3.drag()
 	.on("start", dragstarted)
@@ -681,9 +763,13 @@ document
 		document.getElementById("legend");
 
 		if (state.mode === "group") {
+
 			legend.style.display = "none";
+
 		} else {
+
 			legend.style.display = "flex";
+
 		}
 
 		updateGraph();
