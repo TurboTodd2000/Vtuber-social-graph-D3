@@ -84,8 +84,6 @@ let state = {
 // GROUP STYLE REGISTRY
 // ========================================
 
-
-
 const style = {
 	VSHOJO: {
 		talent: {
@@ -175,16 +173,28 @@ const style = {
 		}
 	},
 
+
 	HOLOLIVE: {
 		talent: {
 			node: { fill: "green" },
-			label: { fill: "white" }
+			label: {
+				fill: "white",
+				size: 14
+			}
 		},
+
 		group: {
-			node: { fill: "green" },
-			label: { fill: "white" }
+			node: {
+				fill: "green",
+				radius: 35
+			},
+			label: {
+				fill: "white",
+				size: 20
+			}
 		}
 	},
+
 
 	FLESHTUBERS: {
 		talent: {
@@ -262,7 +272,7 @@ const style = {
 		},
 		group: {
 			node: { fill: "MediumBlue" },
-			label: { fill: "white" }
+			label: { fill: "yellow" }
 		}
 	},
 
@@ -317,6 +327,14 @@ function getEdgeColor(d) {
 
 }
 
+
+function getGroupRadius(d) {
+	return d.subgroup ? 20 : 35;
+}
+
+function getGroupLabelSize(d) {
+	return d.subgroup ? 14 : 20;
+}
 
 
 
@@ -381,10 +399,6 @@ function getVisibleEdges(visibleNodeIds) {
 
 
 
-
-
-//filtering goes here
-
 // ========================================
 // DEGREE (FOR ATLAS-LIKE LAYOUT)
 // ========================================
@@ -402,12 +416,17 @@ allEdges.forEach(e => {
 
 });
 
+
+
 // ========================================
 // FORCE SIMULATION
 // ========================================
 
+//this section controls the physics sim
+
 const simulation = d3.forceSimulation(allNodes)
 
+//this controls the strength of the edge force attracting nodes
 .force(
 	"link",
 	d3.forceLink(allEdges)
@@ -415,23 +434,37 @@ const simulation = d3.forceSimulation(allNodes)
 	.distance(d => {
 		const s = d.source.id || d.source;
 		const t = d.target.id || d.target;
-		return 90 + (degree.get(s) + degree.get(t)) * 6;
+		return 10 + (degree.get(s) + degree.get(t)) * 6;
 	})
 	.strength(0.275)
 	)
 
+//attraction is negative, repulsion is positive
 .force(
 	"charge",
 	d3.forceManyBody().strength(d => {
-		return -100 * Math.sqrt(degree.get(d.id) || 1);
+		return -500 * Math.sqrt(degree.get(d.id) || 1);
 	})
 	)
 
+//these two pull nodes to the center
 .force(
-	"center",
-	d3.forceCenter(width / 1, height / 1)
+	"x", 
+	d3.forceX(width / 10).strength(0.05)
 	)
 
+  .force(
+  	"y", 
+  	d3.forceY(height / 10).strength(0.05)
+  	)
+
+//this controls placement relative to the viewport
+.force(
+	"center",
+	d3.forceCenter(width / 3, height / 3)
+	)
+
+//does what it says, controls how hard nodes repel eachother on contact
 .force(
 	"collision",
 	d3.forceCollide().radius(d => {
@@ -441,17 +474,9 @@ const simulation = d3.forceSimulation(allNodes)
 	})
 	)
 
+//these are the dampining forces
 .alphaDecay(0.03)
 .velocityDecay(0.45);
-
-
-
-	//main update goes here
-
-
-
-
-
 
 
 
@@ -488,6 +513,7 @@ function getNeighborhood(nodeId) {
 
 	return neighbors;
 }
+
 
 
 // ========================================
@@ -548,8 +574,7 @@ function updateGraph() {
 	.attr("stroke-linecap", "round")
 	.attr("stroke-dasharray", d =>
 		d.dashes ? "6,4" : null
-	);
-
+		);
 
 
 	const linkMerge = linkEnter.merge(link);
@@ -602,6 +627,8 @@ function updateGraph() {
 	.call(drag(simulation));
 
 
+	// these sections control node attributes for display
+
 	// ========================================
 	// INTEREST NODES
 	// ========================================
@@ -618,10 +645,16 @@ function updateGraph() {
 	// ========================================
 
 	nodeEnter
-	.filter(d => d.type === "group")
+	/*.filter(d => d.type === "group")
 	.append("circle")
 	.attr("r", 35)
+	.attr("fill", d => getNodeFill(d));*/
+
+	.filter(d => d.type === "group")
+	.append("circle")
+	.attr("r", d => getGroupRadius(d))
 	.attr("fill", d => getNodeFill(d));
+
 	//.attr("fill", d => getFill(d))
 
 
@@ -639,9 +672,22 @@ function updateGraph() {
 	.attr("dominant-baseline", "middle")
 	
 	.attr("fill", d => getLabelFill(d))
-	//.attr("fill", d => getFill(d))
+	
+	
+//this handles the label type size
+	.style("font-size", d => {
 
-	.style("font-size", "14px")
+		if (d.type === "group") {
+			return `${getGroupLabelSize(d)}px`;
+		}
+
+		if (d.type === "interests") {
+			return "20px";
+		}
+
+		return "14px";
+	})
+
 	.style("font-family", "Arial")
 	.style("font-weight", "bold")
 	.text(d => d.label || d.id);
@@ -698,13 +744,12 @@ function updateGraph() {
 
 
 	.attr("fill", d => getLabelFill(d))
-	//.style("fill", d => getLabelFill(d))
-
+	
 
 	.style("font-size", d => {
 
 		if (d.type === "group") return "20px";
-		if (d.type === "interests") return "18px";
+		if (d.type === "interests") return "20px";
 
 		return "14px";
 
@@ -736,6 +781,7 @@ function updateGraph() {
 	nodeMerge.on("click", (event, d) => {
 
 		d3.select(event.currentTarget).raise();
+
 
 		event.stopPropagation();
 
@@ -769,22 +815,19 @@ function updateGraph() {
 
 		talentName.href = d.wiki || "#";
 
-		talentName.innerHTML =
-	`<span class="talentButton name">${d.label || "Unknown"}</span>`;
+		talentName.innerHTML = 	`<span class="talentButton name">${d.label || "Unknown"}</span>`;
 
 
-	youtubeLink.href = d.youtube || "#";
+		youtubeLink.href = d.youtube || "#";
 
-	youtubeLink.innerHTML =
-`<span class="talentButton">${d.youtube ? "YouTube" : "No YouTube"}</span>`;
+		youtubeLink.innerHTML = `<span class="talentButton">${d.youtube ? "YouTube" : "No YouTube"}</span>`;
 
 
-twitchLink.href = d.twitch || "#";
+		twitchLink.href = d.twitch || "#";
 
-twitchLink.innerHTML =
-`<span class="talentButton">${d.twitch ? "Twitch" : "No Twitch"}</span>`;
+		twitchLink.innerHTML = `<span class="talentButton">${d.twitch ? "Twitch" : "No Twitch"}</span>`;
 
-});
+	});
 
 
 	// ========================================

@@ -55,17 +55,21 @@ var typeGroupNodeLabelSize = 25;
 const idText = `{ id: `;
 const typeText = `, type: "`;
 const groupText = `", group: "`;
+const subgroupText = `", subgroup: `;
 const labelText = `", label: "`;
+const labelSubgroupText = `, label: "`;
+
+const graduationText = `", graduation: `;
 
 const collabText = `collab`;
 
 const shapeText = `", shape: "`;
-const sizeNodeText = `", size: `;
+const sizeNodeText = `", shapeSize: `;
 
 const fontSizeText = `, font: { size: `;
 const fontColorText = `, color: "black", strokeWidth: 6, strokeColor: "#ffffff", } }`;
 
-const youtubeText = `", youtube: "`;
+const youtubeText = `, youtube: "`;
 const twitchText = `", twitch: "`;
 const wikiText = `", wiki: "`;
 
@@ -73,6 +77,7 @@ const physicsText = `", fixed: `;
 
 const endText = `" }`;
 const physicsEndText = ` }`;
+const fontEndText = ` } }`;
 
 
 //for edges
@@ -168,6 +173,7 @@ for (let currentNode of groupsFormal) {
 
 		//group specific
 		const currentShape = "dot";
+		const currentIsSubgroup = currentNode.isSubgroup.toLowerCase() === 'true' ? true : false;
 		const currentSubgroup = currentNode.subgroupRef;
 		const currentType = "group";
 
@@ -187,7 +193,7 @@ for (let currentNode of groupsFormal) {
 		//console.log("nodeSize: " + nodeSize);
 
 		//this assembles the info from the sheet output with the string fragments in the variable section to create the final output
-		var nodeHTMLoutput = idText + currentIndex + typeText + currentType + groupText + currentGroup + labelText + currentName + shapeText + currentShape + sizeNodeText + nodeSize + fontSizeText + typeGroupNodeLabelSize + fontColorText;
+		var nodeHTMLoutput = idText + currentIndex + typeText + currentType + groupText + currentGroup + subgroupText + currentIsSubgroup + labelSubgroupText + currentName + shapeText + currentShape + sizeNodeText + nodeSize + fontSizeText + typeGroupNodeLabelSize + fontEndText;
 
 		//console.log(nodeHTMLoutput);
 
@@ -264,7 +270,7 @@ for (let currentNode of groupsInformal) {
 		const nodeSize = typeGroupNodeSize;
 
 
-		var nodeHTMLoutput = idText + currentIndex + typeText + currentType + groupText + currentGroup + labelText + currentName + shapeText + currentShape + sizeNodeText + nodeSize + fontSizeText + typeGroupNodeLabelSize + fontColorText;
+		var nodeHTMLoutput = idText + currentIndex + typeText + currentType + groupText + currentGroup + labelText + currentName + shapeText + currentShape + sizeNodeText + nodeSize + fontSizeText + typeGroupNodeLabelSize + fontEndText;
 
 		//console.log(nodeHTMLoutput);
 
@@ -321,11 +327,13 @@ for (let currentNode of talents) {
 		const currentShape = "dot";
 		const currentType = "talent";
 		const connectionCurrentType = "collab";
+		const currentGraduation = currentNode.graduated.toLowerCase() === 'true' ? true : false;
 
 
-		var nodeHTMLoutput = idText + currentIndex + typeText + currentType + groupText + currentGroup + labelText + currentName + youtubeText + currentYouTube + twitchText + currentTwitch + wikiText + currentWiki + endText;
 
-		//console.log(nodeHTMLoutput);
+		var nodeHTMLoutput = idText + currentIndex + typeText + currentType + groupText + currentGroup + labelText + currentName + graduationText + currentGraduation + youtubeText + currentYouTube + twitchText + currentTwitch + wikiText + currentWiki + endText;
+
+		console.log(nodeHTMLoutput);
 
 		outputNodeAcc.push(nodeHTMLoutput)
 
@@ -405,7 +413,7 @@ function nodeWrite(outputNodeAcc, outputEdgeAcc) {
 	const edgeData = outputEdgeAcc.join(',\n');
 
 	//combine the info into one string for output
-	const outputNodeEdge = "window.nodes = [" + outputNodeAcc + "];" + "\n" + "window.edges = [" + edgeData + "];";
+	const outputNodeEdge = "window.nodes = [\n" + nodeData + "\n];" + "\n\n" + "window.edges = [\n" + edgeData + "\n];";
 
 
 	try {
