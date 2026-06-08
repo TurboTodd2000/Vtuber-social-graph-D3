@@ -1,7 +1,7 @@
 # Social Network | Data | Dynamic filtering
   This is a network graph that shows the group affiliations, interests and social connections of Vtubers. This is aimed at the EN indie scene predominantly but some the EN and ID Hololive folks are included to help flesh things out.
 ## Disclaimer
-	- This is not intended to be an objective map of relationships but only to serve as a "neighborhood map" of folks who know or collab with each other. No malice, ill will or foul intent is ment by this. The friends/collab view is of only some use if for no other reason that how interconnected the folks currently in the graph are. The interests and collab views are open for discussion, I created them by just pulling when I know about folks out of my head.
+	This is not intended to be an objective map of relationships but only to serve as a "neighborhood map" of folks who know or collab with each other. No malice, ill will or foul intent is ment by this. The friends/collab view is of only some use if for no other reason that how interconnected the folks currently in the graph are. The interests and collab views are open for discussion, I created them by just pulling when I know about folks out of my head.
 ## Instructions:
 	- Click and drag to pan, mouse wheel to zoom in and out.
 	- Click on a node to get youtube/twitch links where possible. While selected the name can be clicked on to go to any availble wiki entry for the person/group.
