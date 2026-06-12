@@ -57,7 +57,7 @@ const typeText = `, type: "`;
 const groupText = `", group: "`;
 const subgroupText = `", subgroup: `;
 const labelText = `", label: "`;
-const labelSubgroupText = `, label: "`;
+const labelSubgroupText = `", label: "`;
 
 const graduationText = `", graduation: `;
 
@@ -70,6 +70,7 @@ const fontSizeText = `, font: { size: `;
 const fontColorText = `, color: "black", strokeWidth: 6, strokeColor: "#ffffff", } }`;
 
 const youtubeText = `, youtube: "`;
+const youtubeTextB = `", youtube: "`;
 const twitchText = `", twitch: "`;
 const wikiText = `", wiki: "`;
 
@@ -193,7 +194,7 @@ for (let currentNode of groupsFormal) {
 		//console.log("nodeSize: " + nodeSize);
 
 		//this assembles the info from the sheet output with the string fragments in the variable section to create the final output
-		var nodeHTMLoutput = idText + currentIndex + typeText + currentType + groupText + currentGroup + subgroupText + currentIsSubgroup + labelSubgroupText + currentName + shapeText + currentShape + sizeNodeText + nodeSize + fontSizeText + typeGroupNodeLabelSize + fontEndText;
+		var nodeHTMLoutput = idText + currentIndex + typeText + currentType + groupText + currentGroup + labelSubgroupText + currentName + subgroupText + currentIsSubgroup + youtubeText + currentYouTube + twitchText + currentTwitch + wikiText + currentWiki + endText;
 
 		//console.log(nodeHTMLoutput);
 
@@ -270,7 +271,7 @@ for (let currentNode of groupsInformal) {
 		const nodeSize = typeGroupNodeSize;
 
 
-		var nodeHTMLoutput = idText + currentIndex + typeText + currentType + groupText + currentGroup + labelText + currentName + shapeText + currentShape + sizeNodeText + nodeSize + fontSizeText + typeGroupNodeLabelSize + fontEndText;
+		var nodeHTMLoutput = idText + currentIndex + typeText + currentType + groupText + currentGroup + labelText + currentName + youtubeTextB + currentYouTube + twitchText + currentTwitch + wikiText + currentWiki + endText;
 
 		//console.log(nodeHTMLoutput);
 

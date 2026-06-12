@@ -1,0 +1,80 @@
+//generated from https://csstoolbox.net/colorGenerator
+
+//formal groups
+//root color: #b7030d
+//saturation: 0
+//lightness: -3
+
+
+:root {
+  --palette-1: #03A69E;
+  --palette-2: #0373CE;
+  --palette-3: #030BA6;
+  --palette-4: #5E03CE;
+  --palette-5: #9E03A6;
+  --palette-6: #CE0373;
+  --palette-7: #A6030B;
+  --palette-8: #CE5E03;
+  --palette-9: #A69E03;
+  --palette-10: #73CE03;
+  --palette-11: #0BA603;
+  --palette-12: #03CE5E;
+
+  --palette-1-rgb: 3, 166, 158;
+  --palette-2-rgb: 3, 115, 206;
+  --palette-3-rgb: 3, 11, 166;
+  --palette-4-rgb: 94, 3, 206;
+  --palette-5-rgb: 158, 3, 166;
+  --palette-6-rgb: 206, 3, 115;
+  --palette-7-rgb: 166, 3, 11;
+  --palette-8-rgb: 206, 94, 3;
+  --palette-9-rgb: 166, 158, 3;
+  --palette-10-rgb: 115, 206, 3;
+  --palette-11-rgb: 11, 166, 3;
+  --palette-12-rgb: 3, 206, 94;
+}
+
+
+
+
+//informal groups
+// root color: #b658f6
+// saturation: 0
+// lightness: +7
+
+
+:root {
+  --palette-1: #ABF877;
+  --palette-2: #9EFAA7;
+  --palette-3: #77F8C4;
+  --palette-4: #9EF1FA;
+  --palette-5: #77ABF8;
+  --palette-6: #A79EFA;
+  --palette-7: #C477F8;
+  --palette-8: #FA9EF1;
+  --palette-9: #F877AB;
+  --palette-10: #FAA79E;
+  --palette-11: #F8C477;
+  --palette-12: #F1FA9E;
+
+  --palette-1-rgb: 171, 248, 119;
+  --palette-2-rgb: 158, 250, 167;
+  --palette-3-rgb: 119, 248, 196;
+  --palette-4-rgb: 158, 241, 250;
+  --palette-5-rgb: 119, 171, 248;
+  --palette-6-rgb: 167, 158, 250;
+  --palette-7-rgb: 196, 119, 248;
+  --palette-8-rgb: 250, 158, 241;
+  --palette-9-rgb: 248, 119, 171;
+  --palette-10-rgb: 250, 167, 158;
+  --palette-11-rgb: 248, 196, 119;
+  --palette-12-rgb: 241, 250, 158;
+}
+
+
+
+
+
+
+
+

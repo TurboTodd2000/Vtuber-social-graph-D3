@@ -85,6 +85,184 @@ let state = {
 // ========================================
 
 const style = {
+
+//formal
+
+	BEASTIEZ: {
+		talent: {
+			node: { fill: "#029C94" },
+			label: { fill: "black" }
+		},
+		group: {
+			node: { fill: "#029C94" },
+			label: { fill: "white" }
+		}
+	},
+
+
+	DENTSU: {
+		talent: {
+			node: { fill: "#036DC4" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "#036DC4" },
+			label: { fill: "white" }
+		}
+	},
+
+
+	HOLOLIVE: {
+		talent: {
+			node: { fill: "#020A9C" },
+			label: {
+				fill: "white",
+				size: 14
+			}
+		},
+
+		group: {
+			node: {
+				fill: "#020A9C",
+				radius: 35
+			},
+			label: {
+				fill: "white",
+				size: 20
+			}
+		}
+	},
+
+
+	LAB_BRATS: {
+		talent: {
+			node: { fill: "#5A03C4" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "#5A03C4" },
+			label: { fill: "white" }
+		}
+	},
+
+
+	NEUROVERSE: {
+		talent: {
+			node: { fill: "#94029C" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "#94029C" },
+			label: { fill: "white" }
+		}
+	},
+
+
+	NOVA: {
+		talent: {
+			node: { fill: "#C4036D" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "#C4036D" },
+			label: { fill: "white" }
+		}
+	},
+
+
+	SOCKS: {
+		talent: {
+			node: { fill: "#9C020A" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "#9C020A" },
+			label: { fill: "white" }
+		}
+	},
+
+
+	VICHIBAN: {
+		talent: {
+			node: { fill: "#C45A03" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "#C45A03" },
+			label: { fill: "white" }
+		}
+	},
+
+
+
+//informal
+
+
+	EN_GIRLYPOPS: {
+		talent: {
+			node: { fill: "#ABF877" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "#ABF877" },
+			label: { fill: "white" }
+		}
+	},
+
+
+
+	FLESHTUBERS: {
+		talent: {
+			node: { fill: "#9EFAA7" },
+			label: { fill: "black" }
+		},
+		group: {
+			node: { fill: "#9EFAA7" },
+			label: { fill: "white" }
+		}
+	},
+
+
+	INDIES: {
+		talent: {
+			node: { fill: "#F1FA9E" },
+			label: { fill: "black" }
+		},
+		group: {
+			node: { fill: "#F1FA9E" },
+			label: { fill: "white" }
+		}
+	},
+
+
+	INDO_GIRLYPOPS: {
+		talent: {
+			node: { fill: "#9EF1FA" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "#9EF1FA" },
+			label: { fill: "white" }
+		}
+	},
+
+
+
+
+
+
+
+	VEIN_GANG: {
+		talent: {
+			node: { fill: "#C477F8" },
+			label: { fill: "white" }
+		},
+		group: {
+			node: { fill: "#C477F8" },
+			label: { fill: "white" }
+		}
+	},
+
 	VSHOJO: {
 		talent: {
 			node: { fill: "black" },
@@ -96,185 +274,31 @@ const style = {
 		}
 	},
 
-	DENTSU: {
+	SLOPPY_SISTERS: {
 		talent: {
-			node: { fill: "blue" },
+			node: { fill: "#FAA79E" },
 			label: { fill: "white" }
 		},
 		group: {
-			node: { fill: "blue" },
-			label: { fill: "white" }
-		}
-	},
-
-	NOVA: {
-		talent: {
-			node: { fill: "red" },
-			label: { fill: "white" }
-		},
-		group: {
-			node: { fill: "red" },
-			label: { fill: "white" }
-		}
-	},
-
-	BEASTIEZ: {
-		talent: {
-			node: { fill: "purple" },
-			label: { fill: "white" }
-		},
-		group: {
-			node: { fill: "purple" },
-			label: { fill: "white" }
-		}
-	},
-
-	VICHIBAN: {
-		talent: {
-			node: { fill: "yellow" },
-			label: { fill: "black" }
-		},
-		group: {
-			node: { fill: "yellow" },
-			label: { fill: "white" }
-		}
-	},
-
-	INDIES: {
-		talent: {
-			node: { fill: "orange" },
-			label: { fill: "black" }
-		},
-		group: {
-			node: { fill: "orange" },
-			label: { fill: "white" }
-		}
-	},
-
-	NEUROVERSE: {
-		talent: {
-			node: { fill: "MediumSpringGreen" },
-			label: { fill: "black" }
-		},
-		group: {
-			node: { fill: "MediumSpringGreen" },
-			label: { fill: "white" }
-		}
-	},
-
-	INDO_GIRLYPOPS: {
-		talent: {
-			node: { fill: "DarkOrchid" },
-			label: { fill: "white" }
-		},
-		group: {
-			node: { fill: "DarkOrchid" },
+			node: { fill: "#FAA79E" },
 			label: { fill: "white" }
 		}
 	},
 
 
-	HOLOLIVE: {
+	CHAOS_CREW: {
 		talent: {
-			node: { fill: "green" },
-			label: {
-				fill: "white",
-				size: 14
-			}
-		},
-
-		group: {
-			node: {
-				fill: "green",
-				radius: 35
-			},
-			label: {
-				fill: "white",
-				size: 20
-			}
-		}
-	},
-
-
-	FLESHTUBERS: {
-		talent: {
-			node: { fill: "firebrick" },
+			node: { fill: "#F877AB" },
 			label: { fill: "white" }
 		},
 		group: {
-			node: { fill: "firebrick" },
-			label: { fill: "white" }
-		}
-	},
-
-	LAB_BRATS: {
-		talent: {
-			node: { fill: "LightSeaGreen" },
-			label: { fill: "black" }
-		},
-		group: {
-			node: { fill: "LightSeaGreen" },
+			node: { fill: "#F877AB" },
 			label: { fill: "white" }
 		}
 	},
 
 
-	CRASHOUT_CREW: {
-		talent: {
-			node: { fill: "Turquoise" },
-			label: { fill: "black" }
-		},
-		group: {
-			node: { fill: "Turquoise" },
-			label: { fill: "white" }
-		}
-	},
 
-
-	TERI_YAKI: {
-		talent: {
-			node: { fill: "SkyBlue" },
-			label: { fill: "black" }
-		},
-		group: {
-			node: { fill: "SkyBlue" },
-			label: { fill: "white" }
-		}
-	},
-
-
-	VEIN_GANG: {
-		talent: {
-			node: { fill: "Moccasin" },
-			label: { fill: "white" }
-		},
-		group: {
-			node: { fill: "Moccasin" },
-			label: { fill: "white" }
-		}
-	},
-
-	SOCKS: {
-		talent: {
-			node: { fill: "pink" },
-			label: { fill: "black" }
-		},
-		group: {
-			node: { fill: "pink" },
-			label: { fill: "white" }
-		}
-	},
-
-	EN_GIRLYPOPS: {
-		talent: {
-			node: { fill: "MediumBlue" },
-			label: { fill: "white" }
-		},
-		group: {
-			node: { fill: "MediumBlue" },
-			label: { fill: "yellow" }
-		}
-	},
 
 //non talent/group nodes
 
@@ -453,10 +477,10 @@ const simulation = d3.forceSimulation(allNodes)
 	d3.forceX(width / 10).strength(0.05)
 	)
 
-  .force(
-  	"y", 
-  	d3.forceY(height / 10).strength(0.05)
-  	)
+.force(
+	"y", 
+	d3.forceY(height / 10).strength(0.05)
+	)
 
 //this controls placement relative to the viewport
 .force(
@@ -570,7 +594,8 @@ function updateGraph() {
 	const linkEnter = link.enter()
 	.append("line")
 	.attr("class", "link")
-	.attr("stroke-width", 1.5)
+	//how thick the edges are
+	.attr("stroke-width", 2.5)
 	.attr("stroke-linecap", "round")
 	.attr("stroke-dasharray", d =>
 		d.dashes ? "6,4" : null
@@ -584,7 +609,8 @@ function updateGraph() {
 	.attr("stroke", d => getEdgeColor(d))
 	.style("opacity", d => {
 
-		if (!neighborhood) return 0.35;
+//opacity of the edges
+		if (!neighborhood) return 0.5;
 
 		const sourceId =
 		typeof d.source === "object"
@@ -645,17 +671,10 @@ function updateGraph() {
 	// ========================================
 
 	nodeEnter
-	/*.filter(d => d.type === "group")
-	.append("circle")
-	.attr("r", 35)
-	.attr("fill", d => getNodeFill(d));*/
-
 	.filter(d => d.type === "group")
 	.append("circle")
 	.attr("r", d => getGroupRadius(d))
 	.attr("fill", d => getNodeFill(d));
-
-	//.attr("fill", d => getFill(d))
 
 
 	// ========================================
@@ -674,7 +693,7 @@ function updateGraph() {
 	.attr("fill", d => getLabelFill(d))
 	
 	
-//this handles the label type size
+	//this handles the label type size
 	.style("font-size", d => {
 
 		if (d.type === "group") {

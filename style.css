@@ -1,3 +1,57 @@
+:root {
+
+  --palette-1-formal: #4FFCA0;
+  --palette-2-formal: #77FDF8;
+  --palette-3-formal: #4FACFC;
+  --palette-4-formal: #777CFD;
+  --palette-5-formal: #A04FFC;
+  --palette-6-formal: #F877FD;
+  --palette-7-formal: #FC4FAC;
+  --palette-8-formal: #FD777C;
+  --palette-9-formal: #FCA04F;
+  --palette-10-formal: #FDF877;
+  --palette-11-formal: #ACFC4F;
+  --palette-12-formal: #7CFD77;
+
+  --palette-1-rgb-formal: 79, 252, 160;
+  --palette-2-rgb-formal: 119, 253, 248;
+  --palette-3-rgb-formal: 79, 172, 252;
+  --palette-4-rgb-formal: 119, 124, 253;
+  --palette-5-rgb-formal: 160, 79, 252;
+  --palette-6-rgb-formal: 248, 119, 253;
+  --palette-7-rgb-formal: 252, 79, 172;
+  --palette-8-rgb-formal: 253, 119, 124;
+  --palette-9-rgb-formal: 252, 160, 79;
+  --palette-10-rgb-formal: 253, 248, 119;
+  --palette-11-rgb-formal: 172, 252, 79;
+  --palette-12-rgb-formal: 124, 253, 119;
+
+  --palette-1-informal: #C581B4;
+  --palette-2-informal: #D29DAA;
+  --palette-3-informal: #C59281;
+  --palette-4-informal: #D2C59D;
+  --palette-5-informal: #B4C581;
+  --palette-6-informal: #AAD29D;
+  --palette-7-informal: #81C592;
+  --palette-8-informal: #9DD2C5;
+  --palette-9-informal: #81B4C5;
+  --palette-10-informal: #9DAAD2;
+  --palette-11-informal: #9281C5;
+  --palette-12-informal: #C59DD2;
+
+  --palette-1-rgb-informal: 197, 129, 180;
+  --palette-2-rgb-informal: 210, 157, 170;
+  --palette-3-rgb-informal: 197, 146, 129;
+  --palette-4-rgb-informal: 210, 197, 157;
+  --palette-5-rgb-informal: 180, 197, 129;
+  --palette-6-rgb-informal: 170, 210, 157;
+  --palette-7-rgb-informal: 129, 197, 146;
+  --palette-8-rgb-informal: 157, 210, 197;
+  --palette-9-rgb-informal: 129, 180, 197;
+  --palette-10-rgb-informal: 157, 170, 210;
+  --palette-11-rgb-informal: 146, 129, 197;
+  --palette-12-rgb-informal: 197, 157, 210;
+}
 
 
 
