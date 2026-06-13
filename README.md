@@ -12,13 +12,13 @@ Click on a node to get youtube/twitch links where possible. While selected the n
 Buttons swap display per label. There's a bug where reloading the page isn't resetting the button to group so just select the group button and then switch back to whichever view you want.
 
 ## How it was built
-the whole thing was originally built on the viz.js library and the basic structure came from my taking one of their examples and swapping in my information.
+The whole thing was originally built on the viz.js library and the basic structure came from my taking one of their examples and swapping in my information.
 
 My original prototype can be found at https://codepen.io/TurboTodd2k/pen/RNGevLK, it's a very basic implimentation using viz.js but if you want something simple to mess around with it's not a bad starting point. If it seems like it's just one of the examples from the viz.js site with the node data swapped out you'd be correct.
 
 Ultimatly I made the decision to switch to the D3 library as I was running into issues with how viz.js was handling certain aspects of group colors.
 
-## Vibe coding disclaimer....
+### Vibe coding disclaimer....
 
 The majority of this was built in a "I assemble something from example code that throws errors and then feed it to chat gpt and ask it to clarify" style
 
