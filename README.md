@@ -7,12 +7,16 @@ This is not intended to be an objective map of relationships but only to serve a
 ## Instructions:
 Click and drag to pan, mouse wheel to zoom in and out.
 Click on a node to get youtube/twitch links where possible. While selected the name can be clicked on to go to any availble wiki entry for the person/group.
+
 Buttons swap display per label. There's a bug where reloading the page isn't resetting the button to group so just select the group button and then switch back to whichever view you want.
 
 ## How it was built
 the whole thing was originally built on the viz.js library and the basic structure came from my taking one of their examples and swapping in my information.
+
 my original can be found at https://codepen.io/TurboTodd2k/pen/RNGevLK, it's a very basic implimentation using viz.js but if you want something simple to mess around with it's not a bad starting point. If it seems like it's just one of the examples from the viz.js site with the node data swapped out you'd be correct
+
 ultimatly I made the decision to switch to the D3 library as I was running into issues with how viz.js was handling certain aspects of group colors
+
 Vibe coding disclaimer....
 	the majority of this was built in a "I assemble something from example code that throws errors and then feed it to chat gpt and ask it to clarify" style
 	the exception to this is the D3 refactor where I just threw the code base at chat gpt and asked it to do the rewrite, then worked through the errors introduced by the rewrite
@@ -20,18 +24,28 @@ Vibe coding disclaimer....
 
 ## Features
 Google sheet based backend, data can be edited without having to fiddle with code so many folks can contribute
+
 D3 is complex to setup but provides lots of control so more possibility of customization in the future
+
 nodes can be selected to highlight immediate connections
+
 info panel that provides links to youtube, twitch and wiki entries for the selected node
+
 3 views, groups, interests and collab partners/friends
+
 graph has physics so nodes can be moved to help understand the links
 
 ## How it works
 welcome to my Ted talk, "Byzantine bullshit and how to code with it".
+
 currently the data for the graph is managed from a google sheet, the sheet info is exported with an app script to your google drive, downloaded locally and then run through a parser to combine the output and transliterate it into the format that the D3 script expects.
+
 from there I'm hosting on a github page but you can host it where ever you'd like
+
 like I said, Byzantine...
+
 on the upside the split means that you can review the output of the app script and sort out any issues there apart from the conversion to D3 format, downside is more steps
+
 https://observablehq.com/@ben-tanen/a-tutorial-to-using-d3-force-from-someone-who-just-learned-ho excellent explination of how D3 forces work
 
 ## Things to look out for
