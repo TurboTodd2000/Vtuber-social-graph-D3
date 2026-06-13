@@ -90,11 +90,11 @@ const style = {
 
 	BEASTIEZ: {
 		talent: {
-			node: { fill: "#029C94" },
+			node: { fill: "#6DC403" },
 			label: { fill: "black" }
 		},
 		group: {
-			node: { fill: "#029C94" },
+			node: { fill: "#6DC403" },
 			label: { fill: "white" }
 		}
 	},
@@ -245,11 +245,6 @@ const style = {
 			label: { fill: "white" }
 		}
 	},
-
-
-
-
-
 
 
 	VEIN_GANG: {
