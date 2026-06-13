@@ -600,31 +600,35 @@ function updateGraph() {
 	const linkMerge = linkEnter.merge(link);
 
 
-	linkMerge
-	.attr("stroke", d => getEdgeColor(d))
-	.style("opacity", d => {
+
+linkMerge
+    .attr("stroke", d => getEdgeColor(d))
+    .style("opacity", d => {
 
 //opacity of the edges
-		if (!neighborhood) return 0.5;
+        if (!state.focusNode) return 0.5;
 
-		const sourceId =
-		typeof d.source === "object"
-		? d.source.id
-		: d.source;
+        const sourceId =
+            typeof d.source === "object"
+                ? d.source.id
+                : d.source;
 
-		const targetId =
-		typeof d.target === "object"
-		? d.target.id
-		: d.target;
+        const targetId =
+            typeof d.target === "object"
+                ? d.target.id
+                : d.target;
 
-		return (
-			neighborhood.has(sourceId) &&
-			neighborhood.has(targetId)
-			)
-		? 1
-		: 0.05;
+        return (
+            sourceId === state.focusNode ||
+            targetId === state.focusNode
+        )
+            ? 1
+            : 0.05;
 
-	});
+    });
+
+
+
 
 
 	// ========================================

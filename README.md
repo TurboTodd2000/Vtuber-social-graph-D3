@@ -43,6 +43,5 @@ There are a couple of things to be aware of if you're going to edit data
 ## To do
 add more commenting to D3 code to help clarify
 add formatting for graduated folks
-hide cross links when node is selected
 
 (?)combine local parser with app script to cut number of steps?
