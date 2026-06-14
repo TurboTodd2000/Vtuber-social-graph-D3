@@ -8,7 +8,7 @@ export const interests = [
   {active: "TRUE", index: 5006, name: "IRL", membersRef: "69, 82, 88"},
   {active: "TRUE", index: 5007, name: "Media/React", membersRef: "6, 8, 11, 14, 17, 29, 78, 87, 89, 125, 126"},
   {active: "TRUE", index: 5008, name: "Music", membersRef: "2, 3, 6, 8, 9, 11, 12, 13, 17, 18, 19, 21, 25, 29, 30, 34, 35, 41, 52, 58, 59, 60, 66, 67, 68, 69, 70, 72, 75, 78, 80, 87, 88, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 123, 125, 126, 127, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141"},
-  {active: "TRUE", index: 5009, name: "N/A", membersRef: ""},
+  {active: "FALSE", index: 5009, name: "N/A", membersRef: ""},
   {active: "TRUE", index: 5010, name: "Sexuality", membersRef: "14, 30"},
   {active: "TRUE", index: 5011, name: "STEM", membersRef: "124, 128"},
   {active: "TRUE", index: 5012, name: "Tarot", membersRef: 12},
